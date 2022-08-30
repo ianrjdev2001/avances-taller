@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen</title>
+</head>
+
+<body>
+    <canvas id="mycanvas" width="1300" height="765">
+        Hola tu navegador no funciona
+    </canvas>
+    
+    <script>
+        var cv = null;
+        var ctx = null;
+        var press = false;
+        var superx = 250;
+        var supery = 250;
+        var player = null;
+        var player2 = null;
+        var j = 0;
+        var i = 0;
+        //var pared = null;
+        var multiparedes = [null]; 
+        var direccion = '';
+        var speed = 2;
+        var pausa = false;
+        var shark = new Image();
+        var coin = new Image();
+        var audio = new Audio();
+        
+
+        function run()
+        {
+            cv = document.getElementById('mycanvas');
+            ctx = cv.getContext('2d');
+            player = new Cuadro(0,10,20,20,"red");
+            player2 = new Cuadro(1240,0,40,40,"blue");
+            
+            //Paredes
+             //Izquierda
+            multiparedes[0] = new Cuadro(0,50,10,725,"yellow");
+             //Inferior
+            multiparedes[1] = new Cuadro(10,755,1230,10,"yellow");
+             //Derecha
+            multiparedes[2] = new Cuadro(1290,35,10,670,"yellow");
+             //Superior
+            multiparedes[3] = new Cuadro(0,0,1200,10,"yellow");
+             //En Medio
+            multiparedes[4] = new Cuadro(10,50,100,10,"yellow");
+            multiparedes[5] = new Cuadro(170,10,10,120,"yellow");
+            multiparedes[6] = new Cuadro(80,130,170,10,"yellow");
+            multiparedes[7] = new Cuadro(80,140,10,78,"yellow");
+            multiparedes[8] = new Cuadro(80,220,90,10,"yellow");
+            multiparedes[9] = new Cuadro(10,270,100,10,"yellow");
+            multiparedes[10] = new Cuadro(100,270,10,100,"yellow");
+            multiparedes[11] = new Cuadro(100,360,70,10,"yellow");
+            multiparedes[12] = new Cuadro(100,270,10,100,"yellow");
+            multiparedes[13] = new Cuadro(170,360,10,70,"yellow");
+            multiparedes[14] = new Cuadro(100,410,70,10,"yellow");
+            multiparedes[15] = new Cuadro(100,410,10,100,"yellow");
+            multiparedes[16] = new Cuadro(110,500,70,10,"yellow");
+            multiparedes[17] = new Cuadro(240,50,10,80,"yellow");
+            
+
+
+            
+
+            shark.src = 'tiburon.png';
+            coin.src = 'moneda.png';
+            audio.src = 'coin-sound.mp3';
+
+            paint();
+            
+        }
+
+        function paint() 
+        {
+            window.requestAnimationFrame(paint);
+
+            ctx.fillStyle = "green";
+            ctx.fillRect(0,0,1300,765);
+
+            
+            ctx.drawImage(shark,player.x,player.y,40,40);
+            
+            ctx.drawImage(coin,player2.x,player2.y,30,30);
+            
+            
+            for(i = 0; i < multiparedes.length; i++)
+            {
+                multiparedes[i].pintar(ctx);
+            }
+            if(pausa)
+            {
+                ctx.fillStyle = "rgb(0,0,0,0.5)";
+                ctx.fillRect(0,0,500,590);
+
+                ctx.fillStyle = "black";
+                ctx.fillText("PAUSE",230,230);
+            }
+            else
+            {
+                update();
+            }
+            
+        }
+
+        function update()
+        {
+            //arriba
+            if(direccion =='up')
+            {
+                player.y -= speed;
+                /*
+                if(player.y <= 0)
+                {
+                    player.y += speed;
+                }*/
+                for(j = 0; j < multiparedes.length; j++)
+                {
+                    if(player.se_tocan(multiparedes[j]))
+                    {   
+                        player.y += speed;
+                    }
+                }
+            }
+            //abajo
+            if(direccion == 'down') 
+            {
+                player.y += speed;
+                /*
+                if(player.y >= 765)
+                {
+                    player.y -= speed;
+                }
+                */
+                for(j = 0; j < multiparedes.length; j++)
+                {
+                    if(player.se_tocan(multiparedes[j]))
+                    {   
+                        player.y -= speed;
+                    }
+                }
+            }
+            //izquierda
+            if (direccion == 'left') 
+            {   
+                player.x -= speed;
+                /*
+                if(player.x == 0)
+                {
+                    player.x += speed;
+                }*/
+                for(j = 0; j < multiparedes.length; j++)
+                {
+                    if(player.se_tocan(multiparedes[j]))
+                    {   
+                        player.x += speed;
+                    }
+                }
+            }
+            //derecha
+            if (direccion == 'right') 
+            {
+                player.x += speed;
+                /*
+                if(player.x >= 500)
+                {
+                    player.x -= speed;
+                }
+                */
+                for(j = 0; j < multiparedes.length; j++)
+                {
+                    if(player.se_tocan(multiparedes[j]))
+                    {   
+                        player.x -= speed;
+                    }
+                }
+            }
+
+            if(player.se_tocan(player2))
+            {
+                //player2.x = getRandomInt(500);
+                //player2.y = getRandomInt(500);
+
+                
+                audio.play();
+            }            
+        }
+
+        function Cuadro(x,y,w,h,c)
+        {
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+            this.c = c;
+
+            this.se_tocan = function (target) 
+            { 
+                if(this.x < target.x + target.w &&
+                this.x + this.w > target.x && 
+                this.y < target.y + target.h && 
+                this.y + this.h > target.y)
+                {
+                    return true;
+                    console.log("Hola");
+                }
+            };
+
+            this.pintar = function(ctx)
+            {
+                ctx.fillStyle = this.c;
+                ctx.fillRect(this.x,this.y,this.w,this.h);
+                ctx.strokeRect(this.x,this.y,this.w,this.h);
+            }
+        }
+
+        window.requestAnimationFrame = (function () 
+        {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                function (callback) {
+                    window.setTimeout(callback, 17);
+                };
+        }());
+
+        document,addEventListener('keydown', function(e)
+        {
+            //arriba
+            if (e.keyCode == 87 || e.keyCode == 38) 
+            {
+                direccion = 'up';
+            }
+            //abajo
+            if (e.keyCode == 83 || e.keyCode == 40) 
+            {
+                direccion = 'down';
+            }
+            //izquierda
+            if (e.keyCode == 65 || e.keyCode == 37) 
+            {
+                direccion = 'left';
+            }
+            //derecha
+            if (e.keyCode == 68 || e.keyCode == 39) 
+            {
+                direccion = 'right';
+            }
+
+            if (e.keyCode == 32) 
+            {
+                pausa = (pausa)?false:true;
+            } 
+        });
+
+
+
+        
+        window.addEventListener('load',run,false); 
+        /*
+        function getRandomInt(max) 
+        {
+            return Math.floor(Math.random() * max);
+        }
+        */
+    </script>
+</body>
+</html>
