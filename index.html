@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <canvas id="mycanvas" width="1300" height="765">
+    <canvas id="mycanvas" width="1700" height="1000">
         Hola tu navegador no funciona
     </canvas>
     
@@ -30,47 +30,60 @@
         var shark = new Image();
         var coin = new Image();
         var audio = new Audio();
+        var soundtrack = new Audio();
         
 
         function run()
         {
             cv = document.getElementById('mycanvas');
             ctx = cv.getContext('2d');
-            player = new Cuadro(0,10,20,20,"red");
-            player2 = new Cuadro(1240,0,40,40,"blue");
+            player = new Cuadro(20,0,20,20,"red");
+            //player2 = new Cuadro(1240,100,40,40,"blue");
             
             //Paredes
              //Izquierda
-            multiparedes[0] = new Cuadro(0,50,10,725,"yellow");
+            multiparedes[0] = new Cuadro(0,0,10,1000,"yellow");
              //Inferior
-            multiparedes[1] = new Cuadro(10,755,1230,10,"yellow");
+            multiparedes[1] = new Cuadro(10,990,1640,10,"yellow");
              //Derecha
-            multiparedes[2] = new Cuadro(1290,35,10,670,"yellow");
+            multiparedes[2] = new Cuadro(1690,10,10,930,"yellow");
              //Superior
-            multiparedes[3] = new Cuadro(0,0,1200,10,"yellow");
+            multiparedes[3] = new Cuadro(80,0,1620,10,"yellow");
              //En Medio
-            multiparedes[4] = new Cuadro(10,50,100,10,"yellow");
-            multiparedes[5] = new Cuadro(170,10,10,120,"yellow");
-            multiparedes[6] = new Cuadro(80,130,170,10,"yellow");
-            multiparedes[7] = new Cuadro(80,140,10,78,"yellow");
-            multiparedes[8] = new Cuadro(80,220,90,10,"yellow");
-            multiparedes[9] = new Cuadro(10,270,100,10,"yellow");
-            multiparedes[10] = new Cuadro(100,270,10,100,"yellow");
-            multiparedes[11] = new Cuadro(100,360,70,10,"yellow");
-            multiparedes[12] = new Cuadro(100,270,10,100,"yellow");
-            multiparedes[13] = new Cuadro(170,360,10,70,"yellow");
-            multiparedes[14] = new Cuadro(100,410,70,10,"yellow");
-            multiparedes[15] = new Cuadro(100,410,10,100,"yellow");
-            multiparedes[16] = new Cuadro(110,500,70,10,"yellow");
-            multiparedes[17] = new Cuadro(240,50,10,80,"yellow");
-            
+            multiparedes[4] = new Cuadro(10,80,160,10,"yellow");
+            multiparedes[5] = new Cuadro(80,80,10,190,"yellow");
+            multiparedes[6] = new Cuadro(90,260,80,10,"yellow");
+            multiparedes[7] = new Cuadro(130,270,10,110,"yellow");
+            multiparedes[8] = new Cuadro(80,380,60,10,"yellow");
+            multiparedes[9] = new Cuadro(80,320,10,70,"yellow");
+            multiparedes[10] = new Cuadro(230,10,10,130,"yellow");
+            multiparedes[11] = new Cuadro(160,120,70,10,"yellow");
+            multiparedes[12] = new Cuadro(160,120,10,70,"yellow");
+            multiparedes[13] = new Cuadro(170,180,130,10,"yellow");
+            multiparedes[14] = new Cuadro(300,10,10,40,"yellow");
+            multiparedes[15] = new Cuadro(300,110,10,170,"yellow");
+            multiparedes[16] = new Cuadro(250,280,100,10,"yellow");
+            multiparedes[17] = new Cuadro(250,280,10,310,"yellow");
+            multiparedes[18] = new Cuadro(80,440,230,10,"yellow");
+            multiparedes[19] = new Cuadro(310,440,10,80,"yellow");
+            multiparedes[20] = new Cuadro(80,580,180,10,"yellow");
+            multiparedes[21] = new Cuadro(0,510,180,10,"yellow");
+            multiparedes[22] = new Cuadro(160,590,10,140,"yellow");
+            multiparedes[23] = new Cuadro(0,650,90,10,"yellow");
+            multiparedes[24] = new Cuadro(80,720,90,10,"yellow");
+            multiparedes[25] = new Cuadro(160,650,160,10,"yellow");
+            multiparedes[26] = new Cuadro(10,800,160,10,"yellow");
 
+            
+            
+            
 
             
 
             shark.src = 'tiburon.png';
             coin.src = 'moneda.png';
             audio.src = 'coin-sound.mp3';
+            //soundtrack.src = 'mario.mp3';
 
             paint();
             
@@ -81,12 +94,12 @@
             window.requestAnimationFrame(paint);
 
             ctx.fillStyle = "green";
-            ctx.fillRect(0,0,1300,765);
+            ctx.fillRect(0,0,1700,1000);
 
             
             ctx.drawImage(shark,player.x,player.y,40,40);
             
-            ctx.drawImage(coin,player2.x,player2.y,30,30);
+            //ctx.drawImage(coin,player2.x,player2.y,30,30);
             
             
             for(i = 0; i < multiparedes.length; i++)
@@ -100,10 +113,12 @@
 
                 ctx.fillStyle = "black";
                 ctx.fillText("PAUSE",230,230);
+                //soundtrack.pause();
             }
             else
             {
                 update();
+                //soundtrack.play();
             }
             
         }
@@ -180,7 +195,7 @@
                     }
                 }
             }
-
+            /*
             if(player.se_tocan(player2))
             {
                 //player2.x = getRandomInt(500);
@@ -188,7 +203,7 @@
 
                 
                 audio.play();
-            }            
+            } */           
         }
 
         function Cuadro(x,y,w,h,c)
