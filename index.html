@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="zoom.css">
     <title>Examen</title>
 </head>
 
 <body>
-    <canvas id="mycanvas" width="1700" height="1000">
+    <canvas id="mycanvas" width="1700" height="2000">
         Hola tu navegador no funciona
     </canvas>
-    
     <script>
         var cv = null;
         var ctx = null;
@@ -42,9 +42,9 @@
             
             //Paredes
              //Izquierda
-            multiparedes[0] = new Cuadro(0,0,10,1000,"yellow");
+            multiparedes[0] = new Cuadro(0,0,10,1700,"yellow");
              //Inferior
-            multiparedes[1] = new Cuadro(10,990,1640,10,"yellow");
+            multiparedes[1] = new Cuadro(10,1690,1640,10,"yellow");
              //Derecha
             multiparedes[2] = new Cuadro(1690,10,10,930,"yellow");
              //Superior
@@ -72,8 +72,26 @@
             multiparedes[23] = new Cuadro(0,650,90,10,"yellow");
             multiparedes[24] = new Cuadro(80,720,90,10,"yellow");
             multiparedes[25] = new Cuadro(160,650,160,10,"yellow");
-            multiparedes[26] = new Cuadro(10,800,160,10,"yellow");
-
+            multiparedes[26] = new Cuadro(10,800,500,10,"yellow");
+            multiparedes[27] = new Cuadro(250,720,10,90,"yellow");
+            multiparedes[28] = new Cuadro(320,650,10,90,"yellow");
+            multiparedes[29] = new Cuadro(350,800,10,90,"yellow");
+            multiparedes[30] = new Cuadro(500,720,10,250,"yellow");
+            multiparedes[31] = new Cuadro(500,970,140,10,"yellow");
+            multiparedes[32] = new Cuadro(630,970,10,200,"yellow");
+            multiparedes[33] = new Cuadro(360,1050,280,10,"yellow");
+            multiparedes[34] = new Cuadro(350,970,10,90,"yellow");
+            multiparedes[35] = new Cuadro(280,970,150,10,"yellow");
+            multiparedes[36] = new Cuadro(420,900,10,80,"yellow");
+            multiparedes[37] = new Cuadro(420,900,10,80,"yellow");
+            multiparedes[38] = new Cuadro(280,900,10,80,"yellow");
+            multiparedes[39] = new Cuadro(10,900,90,10,"yellow");
+            multiparedes[40] = new Cuadro(110,855,85,10,"yellow");
+            multiparedes[41] = new Cuadro(190,855,10,220,"yellow");
+            multiparedes[42] = new Cuadro(190,855,10,300,"yellow");
+            multiparedes[43] = new Cuadro(140,1070,110,10,"yellow");
+            multiparedes[44] = new Cuadro(10,1220,110,10,"yellow");
+            multiparedes[45] = new Cuadro(10,1220,110,10,"yellow");
             
             
             
@@ -83,7 +101,7 @@
             shark.src = 'tiburon.png';
             coin.src = 'moneda.png';
             audio.src = 'coin-sound.mp3';
-            //soundtrack.src = 'mario.mp3';
+            //soundtrack.src = 'Pekora.mp3';
 
             paint();
             
@@ -94,7 +112,7 @@
             window.requestAnimationFrame(paint);
 
             ctx.fillStyle = "green";
-            ctx.fillRect(0,0,1700,1000);
+            ctx.fillRect(0,0,1700,1700);
 
             
             ctx.drawImage(shark,player.x,player.y,40,40);
