@@ -15,3 +15,68 @@ body
     font-family: "Chalet",Helvetica, Verdana;
     font-size: 16px;
 }
+
+form
+{
+    display: none;
+}
+
+form div
+{
+    margin: .5em;
+}
+
+fieldset
+{
+    border: .1em solid #F60;
+    border-radius: .5em;
+    padding: 1em;
+}
+
+input[type = "checkbox"], input[type = "radio"], select
+{
+    background: #EEE;
+    cursor: pointer;
+}
+
+input[type = "date"], input[type = "email"], input[type = "number"], input[type = "text"]
+{
+    background: #EEE;
+    border-radius: .25em;
+    color: #F60;
+    font-size: 1em;
+    padding: .25em;
+}
+
+input[type = "submit"]
+{
+    background: #FF9A55;
+    border-radius: 0 .25em;
+    color: #500;
+    font-family: "chalet";
+    font-size: 1.5em;
+}
+
+
+.adjuntar-archivo
+{
+    background: #EEE url(../img/boton-buscar.png) no-repeat 100% - 3px;
+    border: thin solid #F60;
+    display: inline;
+    height: 290px;
+    text-align: center;
+}
+
+.adjuntar-archivo:hover
+{
+    background: #C6ECF9 url(../img/boton-buscar.png) no-repeat 100% - 3px;
+}
+
+.cambio
+{
+    -ms-transition: all 2.5s ease-out;
+    -moz-transition: all 2.5s ease-out;
+    -o-transition: all 2.5s ease-out;
+    -webkit-transition: all 2.5s ease-out;
+    transition: all 2.5s ease-out;
+}

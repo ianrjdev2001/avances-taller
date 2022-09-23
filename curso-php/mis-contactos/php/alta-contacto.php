@@ -3,7 +3,7 @@
         <legend>Alta de Contacto</legend>
         <div>
             <label for = "email">Email:</label>
-            <input type = "email" id = "email" class = "cambio" name = "name_txt" placeholder = "Escribe tu email" title = "Tu email" required/>
+            <input type = "email" id = "email" class = "cambio" name = "email_txt" placeholder = "Escribe tu email" title = "Tu email" required/>
         </div>
         <div>
             <label for = "nombre">Nombre: </label>
@@ -34,7 +34,9 @@
         </div>
         <div>
             <label for = "foto">Foto: </label>
-            <input type = "file" id = "foto" class = "foto_cls" name = "nacimiento_txt" title = "Sube tu foto" required/>
+            <div class = ".adjuntar-archivo cambio">
+                <input type = "file" id = "foto" class = "foto_cls" name = "nacimiento_txt" title = "Sube tu foto" required/>
+            </div>
         </div>
         <div>
             <input type = "submit" id = "enviar-alta" class = "cambio" name = "enviar_btn" value = "agregar"/>
