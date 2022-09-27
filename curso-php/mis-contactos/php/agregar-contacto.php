@@ -2,7 +2,7 @@
 
 $email = $_POST["email_txt"];
 $nombre = $_POST["nombre_txt"];
-$sexo = $_POST["sexo_txt"];
+$sexo = $_POST["sexo_rdo"];
 $nacimiento = $_POST["nacimiento_txt"];
 $telefono = $_POST["telefono_txt"];
 $pais = $_POST["pais_txt"];
@@ -40,9 +40,9 @@ if($num_regs == 0)
 }
 else
 {
-    $mensaje = "No se pudo dar de alta el correo <b>$email</b> porque ya existe :/"
+    $mensaje = "No se pudo dar de alta el correo <b>$email</b> porque ya existe :/";
 }
 
 $conexion->close();
-header("location: ..index.php=?alta&mensaje=$mensaje");
+header("Location: ../index.php?op=alta&mensaje=$mensaje");
 ?>

@@ -27,7 +27,7 @@
         </div>
         <div>
             <label for = "pais">Pais: </label>
-            <select id = "pais" class = "cambio" name = "pais_cls">
+            <select id = "pais" class = "cambio" name = "pais_txt">
                     <option value = "">- - -</option>
                     <?php include("select-pais.php");?>
             </select>
@@ -35,7 +35,7 @@
         <div>
             <label for = "foto">Foto: </label>
             <div class = ".adjuntar-archivo cambio">
-                <input type = "file" id = "foto" class = "foto_cls" name = "nacimiento_txt" title = "Sube tu foto" required/>
+                <input type = "file" id = "foto" class = "foto_cls" name = "nacimiento_txt" title = "Sube tu foto"/>
             </div>
         </div>
         <div>
