@@ -2,7 +2,7 @@
     <fieldset>
         <legend>Baja De Contacto</legend>
         <div>
-            <label for=""></label>
+            <label for="email"></label>
             <select name="email_slc" class="cambio" id="email" required>
                 <option value="">- - -</option>
                 <?php include("select-email.php"); ?>

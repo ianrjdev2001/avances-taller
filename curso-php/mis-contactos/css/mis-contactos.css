@@ -33,6 +33,19 @@ fieldset
     padding: 1em;
 }
 
+table img
+{
+    max-width: 50%;
+}
+
+table td
+{
+    border: .1em solid #212121;
+    border-radius: .5em;
+    word-wrap: break-word;
+    text-align: center;
+}
+
 input[type = "checkbox"], input[type = "radio"], select
 {
     background: #EEE;
@@ -46,6 +59,12 @@ input[type = "date"], input[type = "email"], input[type = "number"], input[type 
     color: #F60;
     font-size: 1em;
     padding: .25em;
+}
+
+input[type = "email"]:disabled
+{
+    background: transparent;
+    color: #CCC;
 }
 
 input[type = "submit"]

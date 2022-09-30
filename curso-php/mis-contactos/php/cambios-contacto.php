@@ -1,7 +1,7 @@
 <script>
     window.onload = function()
     {
-        var lista = document.getElementbyId("contacto-lista"); 
+        var lista = document.getElementById("contacto-lista"); 
         lista.onchange = seleccionarContacto;
         function seleccionarContacto()
         {
@@ -19,5 +19,17 @@
                 <?php include("select-email.php"); ?>
             </select>
         </div>
+        <?php 
+            if(isset($_GET["contacto_slc"])!=null)
+            {
+                $conexion2 = conectarse();
+                $contacto = $_GET["contacto_slc"];
+                $consulta_contacto = "SELECT * FROM contactos WHERE email = '$contacto'";
+                $ejecutar_consulta_contacto = $conexion2->query($consulta_contacto);
+                $registro_contacto = $ejecutar_consulta_contacto->fetch_assoc();
+                include("php/cambio-form.php");   
+            }
+            include("php/mensajes.php");
+        ?>
     </fieldset>
 </form>
